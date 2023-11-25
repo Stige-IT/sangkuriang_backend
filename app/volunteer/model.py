@@ -1,3 +1,5 @@
+import uuid
+
 from sqlalchemy import Column, String
 
 from core.database import Base
@@ -5,7 +7,7 @@ from core.database import Base
 
 class Volunteer(Base):
     __tablename__ = "volunteer"
-    id = Column(String(100), primary_key=True, autoincrement=False)
+    id = Column(String(100), primary_key=True, autoincrement=False, default=uuid.uuid4())
     nkk = Column(String(100), nullable=True)
     nik = Column(String(100), nullable=True)
     password = Column(String(100), nullable=True)
