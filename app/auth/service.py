@@ -17,8 +17,11 @@ settings = get_settings()
 
 
 # noinspection PyTypeChecker
-async def get_token(data, db: Session):
-    user: Volunteer = db.query(Volunteer).filter(Volunteer.nik == data.nik).first()
+async def get_token(data, db: Session, is_form=False):
+    if is_form:
+        user: Volunteer = db.query(Volunteer).filter(Volunteer.nik == str(data.username)).first()
+    else:
+        user: Volunteer = db.query(Volunteer).filter(Volunteer.nik == str(data.nik)).first()
 
     if not user:
         raise HTTPException(

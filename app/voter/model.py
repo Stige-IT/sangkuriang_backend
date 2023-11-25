@@ -1,4 +1,6 @@
-from sqlalchemy import Column, String, ForeignKey
+import datetime
+
+from sqlalchemy import Column, String, ForeignKey, DATETIME
 
 from core.database import Base
 
@@ -24,3 +26,4 @@ class Voter(Base):
     address = Column(String(100), nullable=True)
     role = Column(String(100), nullable=True, default="user")
     ktp = Column(String(100), nullable=True)
+    created_at = Column(DATETIME, nullable=True, default=datetime.datetime.now())
